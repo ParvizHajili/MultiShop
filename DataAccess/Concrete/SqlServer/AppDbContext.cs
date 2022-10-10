@@ -8,9 +8,18 @@ namespace DataAccess.Concrete.SqlServer
 {
     public class AppDbContext : IdentityDbContext<User>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Server=Localhost; Database=MultiShopDb; Integrated Security=true;");
+        //}
+
+        public AppDbContext(DbContextOptions options):base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=Localhost; Database=MultiShopDb; Integrated Security=true;");
+           
+        }
+        public AppDbContext()
+        {
+
         }
 
         public DbSet<Category> Categories { get; set; }
