@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Category>
 
-<a asp-area="Admin" asp-action="Create" asp-controller="Categroy">Create</a>
+<a asp-area="Admin" asp-action="Create" asp-controller="Category">Create</a>
 
 <div class="container">
     <div class="row">
@@ -15,9 +15,10 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Task</th>
+                                <th>Category Name</th>
                                 <th>Progress</th>
                                 <th style="width: 40px">Label</th>
+                                <th style="width: 200px"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,10 @@
                                         </div>
                                     </td>
                                     <td><span class="badge bg-danger">55%</span></td>
+                                    <td>
+                                        <a href="/admin/category/update/@category.Id" class="btn btn-outline-warning">Edit</a>
+                                        <a href="/admin/category/delete/@category.Id" class="btn btn-outline-danger">Delete</a>
+                                    </td>
                                 </tr>
                                 count++;
                             }

@@ -33,5 +33,35 @@ namespace WebUI.Areas.Admin.Controllers
             _categoryService.AddCategory(category);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Category category)
+        {
+            _categoryService.UpdateCategory(category);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Category category)
+        {
+            var categoryId = _categoryService.GetCategoryById(category.Id);
+            categoryId.IsDeleted = true;
+            _categoryService.UpdateCategory(categoryId);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
