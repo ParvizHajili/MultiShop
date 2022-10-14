@@ -13,6 +13,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 
+builder.Services.AddScoped<ISubCategoryService, SubCategoryManager>();
+builder.Services.AddScoped<ISubCategoryDal, SubCategoryDal>();
+
 //builder.Services.AddDbContext<AppDbContext>(option =>
 //option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
