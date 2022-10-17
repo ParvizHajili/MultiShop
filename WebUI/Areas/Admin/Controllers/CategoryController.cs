@@ -1,10 +1,12 @@
 ﻿using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Business.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Entities.Dtos
+@model RegisterDto
+@{
     Layout = "_AuthLayout";
 }
 
@@ -12,7 +14,7 @@
 
             <form  method="post">
                 <div class="input-group mb-3">
-                    <input type="text" name="FirsName" class="form-control" placeholder="First Name">
+                    <input type="text" name="FirstName" class="form-control" placeholder="First Name">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>

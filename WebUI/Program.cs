@@ -10,16 +10,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<AppDbContext>();
+
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 
 builder.Services.AddScoped<ISubCategoryService, SubCategoryManager>();
 builder.Services.AddScoped<ISubCategoryDal, SubCategoryDal>();
 
-//builder.Services.AddDbContext<AppDbContext>(option =>
-//option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-//builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
-//    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.Configure<IdentityOptions>(option =>
+{
+    option.Password.RequireDigit = false;
+    option.Password.RequireLowercase = false;
+    option.Password.RequireNonAlphanumeric = false;
+    option.Password.RequireUppercase = false;
+});
 
 var app = builder.Build();
 

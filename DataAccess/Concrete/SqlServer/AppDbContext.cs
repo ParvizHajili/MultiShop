@@ -13,14 +13,6 @@ namespace DataAccess.Concrete.SqlServer
             optionsBuilder.UseSqlServer(@"Server=Localhost; Database=MultiShopDb; Integrated Security=true;");
         }
 
-        //public AppDbContext(DbContextOptions options):base(options)
-        //{
-
-        //}
-        public AppDbContext()
-        {
-
-        }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
