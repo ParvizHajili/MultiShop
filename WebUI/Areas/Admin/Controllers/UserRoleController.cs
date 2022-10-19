@@ -23,13 +23,12 @@ namespace WebUI.Areas.Admin.Controllers
             return View(users);
         }
 
-        [HttpPost]
         public async Task<IActionResult> AddRole(string id)
         {
             if (id == null)
                 return NotFound();
 
-            User user = await _userManager.FindByNameAsync(id);
+            User user = await _userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
             var userRoles = (await _userManager.GetRolesAsync(user)).ToList();
             var roles = _roleManager.Roles.Select(role => role.Name).ToList();
