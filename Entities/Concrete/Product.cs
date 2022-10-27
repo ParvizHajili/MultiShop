@@ -1,0 +1,19 @@
+﻿using Core.Entities;
+using Core.Entities.Concrete;
+
+namespace Entities.Concrete
+{
+    public class Product : IEntity
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public float Price { get; set; }
+        public string FromAuthor { get; set; }
+        public decimal Quantity { get; set; }
+        public string Description { get; set; }
+        public string AdditionalInformation { get; set; }
+        public bool IsConfirmed { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
+    }
+}
