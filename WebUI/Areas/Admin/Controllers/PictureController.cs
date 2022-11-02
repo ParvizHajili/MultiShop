@@ -17,11 +17,6 @@ namespace WebUI.Areas.Admin.Controllers
             _pictureService = pictureService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         public JsonResult Upload(List<IFormFile> Picture)
         {

@@ -7,60 +7,33 @@ namespace WebUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class SubCategoryController : Controller
     {
+        private readonly ICategoryService _categoryService;
         private readonly ISubCategoryService _subCategoryService;
-
-        public SubCategoryController(ISubCategoryService subCategoryService)
+        public SubCategoryController(ISubCategoryService subCategoryService, ICategoryService categoryService)
         {
             _subCategoryService = subCategoryService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
         {
-            var result = _subCategoryService.GetActiveSubCategories();
-            return View(result);
+            return View();
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var categories = _categoryService.GetAllCategories();
+
+            return View(categories);
         }
 
         [HttpPost]
-        public IActionResult Create(SubCategory subcategory)
+        public IActionResult Create(SubCategory subCategory, List<int> categoryIds)
         {
-            _subCategoryService.AddSubCategory(subcategory);
-            return RedirectToAction(nameof(Index));
-        }
+            _subCategoryService.AddSubCategory(subCategory, categoryIds);
 
-        [HttpGet]
-        public IActionResult Update(int id)
-        {
-            var result = _subCategoryService.GetSubCategoryById(id);
-            return View(result);
-        }
-
-        [HttpPost]
-        public IActionResult Update(SubCategory subCategory)
-        {
-            _subCategoryService.UpdateSubCategory(subCategory);
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var subCategory = _subCategoryService.GetSubCategoryById(id);
-            return View(subCategory);
-        }
-
-        [HttpPost]
-        public IActionResult Delete(SubCategory subCategory)
-        {
-            var subCategoryId = _subCategoryService.GetSubCategoryById(subCategory.Id);
-            subCategoryId.IsDeleted = true;
-            _subCategoryService.UpdateSubCategory(subCategoryId);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
     }
 }

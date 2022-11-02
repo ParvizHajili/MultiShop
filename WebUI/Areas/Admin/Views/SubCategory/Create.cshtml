@@ -1,17 +1,29 @@
-﻿
+﻿@model IEnumerable<Category>
+
 
 <div class="container">
     <div class="row">
         <div class="col-8 m-auto">
             <form method="post">
-                <div class="card mt-4">
+                <div class="card mt-5">
                     <div class="card-header">
-                        Category
+                        Sub category
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="categoryName">Category Name</label>
-                            <input class="form-control" type="text" name="Name" id="subCategoryName" placeholder="Enter Category Name" />
+                            <label for="categoryName">Subcategory name</label>
+                            <input class="form-control" placeholder="Enter category name" type="text" name="Name" id="categoryName" />
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <select class="form-control" name="categoryIds" multiple>
+                                @foreach (var category in Model)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="card-footer">

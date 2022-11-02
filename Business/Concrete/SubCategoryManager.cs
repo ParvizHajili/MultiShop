@@ -13,9 +13,9 @@ namespace Business.Concrete
             _subCategoryDal = subCategoryDal;
         }
 
-        public void AddSubCategory(SubCategory subCategory)
+        public void AddSubCategory(SubCategory subCategory, List<int> categoryIds)
         {
-            _subCategoryDal.Add(subCategory);
+            _subCategoryDal.AddSubCategoryWithCategories(subCategory, categoryIds);
         }
 
         public void DeleteSubCategory(SubCategory subCategory)

@@ -4,13 +4,15 @@ using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.SqlServer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<AppDbContext>();
+
+builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
@@ -29,10 +31,6 @@ builder.Services.AddScoped<IPictureDal, PictureDal>();
 builder.Services.AddScoped<IProductPictureService, ProductPictureManager>();
 builder.Services.AddScoped<IProductPictureDal, ProductPictureDal>();
 
-
-
-builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.Configure<IdentityOptions>(option =>
 {

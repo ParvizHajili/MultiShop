@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using Entities.Concrete;
 
 namespace Business.Concrete
 {
@@ -10,6 +11,11 @@ namespace Business.Concrete
         public ProductPictureManager(IProductPictureDal productPictureDal)
         {
             _productPictureDal = productPictureDal;
+        }
+
+        public void AddProductPicture(ProductPicture productPicture)
+        {
+            _productPictureDal.Add(productPicture);
         }
     }
 }

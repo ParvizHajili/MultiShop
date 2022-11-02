@@ -13,7 +13,11 @@ namespace Entities.Concrete
         public string Description { get; set; }
         public string AdditionalInformation { get; set; }
         public bool IsConfirmed { get; set; }
+        public int SubCategoryId { get; set; }
+        public SubCategory SubCategory { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
+        public int Hit { get; set; }
+        public List<ProductPicture> ProductPictures { get; set; }
     }
 }

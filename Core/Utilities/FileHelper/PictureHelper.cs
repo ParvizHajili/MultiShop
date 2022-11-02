@@ -7,7 +7,7 @@ namespace Core.Utilities.FileHelper
     {
         public static string UploadPicture( this IFormFile file, string webRootPath)
         {
-            var path = "/uploads" + Guid.NewGuid().ToString() + file.FileName;
+            var path = "/uploads/" + Guid.NewGuid().ToString() + file.FileName;
             using (var fileStream = new FileStream(webRootPath + path, FileMode.Create))
             {
                 file.CopyTo(fileStream);
